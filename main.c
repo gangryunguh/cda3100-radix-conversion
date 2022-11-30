@@ -1,20 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+
 char digits[]="0123456789abcdefghijklmnopqrstuvwxyz";
 
 void parse_input(char *input, int *integral, float *fractional) {
-   char *c;
-   char frac[128] = "0.";
-
-   *integral = atoi(strtok(input,"."));
-   if ((c = strtok(NULL, ".")) != NULL) {
-      int i = 2;
-      for (; *c; c++,i++)
-         frac[i] = *c;
-      frac[i] = '\0';
-      *fractional = atof(frac);
-   }
+   float val = atof(input);
+   *integral = (int) val;
+   *fractional = val - *integral;
 }
 
 int main(int argc, char *argv[]) {
